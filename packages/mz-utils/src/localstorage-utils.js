@@ -1,11 +1,10 @@
-import isObject from 'underscore/isObject';
-import isString from 'underscore/isString';
+import _ from 'underscore';
 
 const store = window.localStorage;
 
 function get(key) {
   const value = store.getItem(key);
-  if (value && isString(value)) {
+  if (value && _.isString(value)) {
     try {
       return JSON.parse(value);
     } catch (e) {
@@ -16,7 +15,7 @@ function get(key) {
 }
 
 function set(key, value) {
-  if (value && isObject(value)) {
+  if (value && _.isObject(value)) {
     value = JSON.stringify(value);
   }
   store.setItem(key, value);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { message, Modal, Spin, Icon } from 'antd';
 import moment from 'moment';
-import { handleDownload, convertProgressText } from '../../utils/index.js';
+import { handleDownload, convertProgressText } from '@mz/utils/index.js';
 // import Service from '../../mng/service/common/common.js';
 import './index.less';
 
@@ -84,6 +84,7 @@ class AsyncDownload extends React.Component {
       // eslint-disable-next-line no-undef
       handleDownload(
         `/api/download/public/export-data`,
+        // eslint-disable-next-line no-undef
         `${this.state.fileName}${date}`,
         {
           exportToken,
@@ -113,12 +114,12 @@ class AsyncDownload extends React.Component {
                   style={{ fontSize: '45px', color: '#52c41a' }}
                 />
               ) : (
-                <Icon
-                  type="close-circle"
-                  theme="filled"
-                  style={{ fontSize: '45px', color: '#f5222d' }}
-                />
-              )}
+                    <Icon
+                      type="close-circle"
+                      theme="filled"
+                      style={{ fontSize: '45px', color: '#f5222d' }}
+                    />
+                  )}
               <div className="progress-text">
                 {convertProgressText(this.state.progressStatus)}
                 <br />

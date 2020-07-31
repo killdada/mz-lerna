@@ -1,4 +1,4 @@
-import LOCATION from '@constants/location';
+import LOCATION from './constants/location';
 import { queryString, isEmpty } from './function';
 
 class Location {

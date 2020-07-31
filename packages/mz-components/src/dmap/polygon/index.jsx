@@ -3,7 +3,7 @@ import React from 'react';
 import { message, Button, InputNumber } from 'antd';
 import _ from 'underscore';
 
-import { setupMap } from '@mz/utils/map';
+import { setupMap, stringtoArray } from '@mz/utils/map';
 
 import './index.less';
 
@@ -40,31 +40,6 @@ const POLYGON_STYPE_LIST = [
   },
 ];
 
-export const stringtoArray = (value) => {
-  if (typeof value !== 'string') return value;
-  let res = value
-    .slice(1, -1)
-    .replace(/],/g, ']~')
-    .replace(/\[/g, '')
-    .replace(/\]/g, '')
-    .split('~');
-  res = res.map((n) => {
-    return n
-      .replace(/ /g, '')
-      .split(',')
-      .map((v) => {
-        return parseFloat(v);
-      });
-  });
-  return res;
-};
-
-export const Arraytostring = (arr) => {
-  let tmp = _.map(arr, (item) => {
-    return `[${item.toString()}]`;
-  });
-  return `[${tmp.join(',')}]`;
-};
 
 const handlePolygonPath = (amapPath) => {
   let result = _.map(amapPath, (path) => {
@@ -343,23 +318,23 @@ class DPolygon extends React.Component {
           <div className="dmap-tools-bottom">
             {isEdit
               ? [
-                  <Button
-                    key="delete"
-                    icon="delete"
-                    type="danger"
-                    onClick={() => {
-                      this.delPloygen();
-                    }}
-                  />,
-                  <Button
-                    key="save"
-                    icon="save"
-                    type="primary"
-                    onClick={() => {
-                      this.onCloseEdit();
-                    }}
-                  />,
-                ]
+                <Button
+                  key="delete"
+                  icon="delete"
+                  type="danger"
+                  onClick={() => {
+                    this.delPloygen();
+                  }}
+                />,
+                <Button
+                  key="save"
+                  icon="save"
+                  type="primary"
+                  onClick={() => {
+                    this.onCloseEdit();
+                  }}
+                />,
+              ]
               : null}
           </div>
         </div>
